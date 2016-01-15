@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BathrobeSamurai.h"
-//#include "Character/MyProjectCharacter.h"
+#include "AI/TestChar/MyProjectCharacter.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "CheckDistance.h"
 
@@ -14,7 +14,7 @@ EBTNodeResult::Type UCheckDistance::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 		return EBTNodeResult::Failed;
 	}
 
-	/*for (TActorIterator<AMyProjectCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	for (TActorIterator<AMyProjectCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		AMyProjectCharacter* PlayerCharacter = *ActorItr;
 
@@ -33,7 +33,7 @@ EBTNodeResult::Type UCheckDistance::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 				return EBTNodeResult::Succeeded;
 			}
 		}
-	}*/
+	}
 
 	return EBTNodeResult::Failed;
 }

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BathrobeSamurai.h"
-//#include "Character/MyProjectCharacter.h"
+#include "AI/TestChar/MyProjectCharacter.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "DistanceCheck2.h"
 
@@ -14,7 +14,7 @@ EBTNodeResult::Type UDistanceCheck2::ExecuteTask(UBehaviorTreeComponent& OwnerCo
 		return EBTNodeResult::Failed;
 	}
 
-	/*for (TActorIterator<AMyProjectCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	for (TActorIterator<AMyProjectCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		AMyProjectCharacter* PlayerCharacter = *ActorItr;
 
@@ -25,6 +25,9 @@ EBTNodeResult::Type UDistanceCheck2::ExecuteTask(UBehaviorTreeComponent& OwnerCo
 			FVector TargPosition = PlayerCharacter->GetActorLocation();
 
 			Distance = FVector::Dist(MyPosition, TargPosition) / 10.f;
+
+			OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Float>(BlackboardKey.GetSelectedKeyID(), Distance);
+
 			GEngine->AddOnScreenDebugMessage(0, 1.f, FColor::Red, TEXT("Distance = ") + FString::SanitizeFloat(Distance));
 
 			if (MaxDistance < Distance)
@@ -32,7 +35,7 @@ EBTNodeResult::Type UDistanceCheck2::ExecuteTask(UBehaviorTreeComponent& OwnerCo
 				return EBTNodeResult::Succeeded;
 			}
 		}
-	}*/
+	}
 
 	return EBTNodeResult::Failed;
 }
