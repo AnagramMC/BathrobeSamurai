@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BathrobeSamurai.h"
-#include "AI/TestChar/MyProjectCharacter.h"
+#include "Arin/Arin.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "FindPlayer.h"
 
@@ -14,9 +14,9 @@ EBTNodeResult::Type UFindPlayer::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 		return EBTNodeResult::Failed;
 	}
 
-	for (TActorIterator<AMyProjectCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	for (TActorIterator<AArin> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
-		AMyProjectCharacter* PlayerCharacter = *ActorItr;
+		AArin* PlayerCharacter = *ActorItr;
 		if (PlayerCharacter)
 		{
 			OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Object>(BlackboardKey.GetSelectedKeyID(), PlayerCharacter);
