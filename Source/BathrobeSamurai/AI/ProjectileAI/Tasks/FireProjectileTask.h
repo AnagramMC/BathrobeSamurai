@@ -3,22 +3,16 @@
 #pragma once
 
 #include "BehaviorTree/Tasks/BTTask_BlackboardBase.h"
-#include "CheckDistance.generated.h"
+#include "FireProjectileTask.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BATHROBESAMURAI_API UCheckDistance : public UBTTask_BlackboardBase
+class BATHROBESAMURAI_API UFireProjectileTask : public UBTTask_BlackboardBase
 {
 	GENERATED_BODY()
 	
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Player)
-		float MaxDistance = 100.f;
-
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
-
-	float Distance = 0.f;
 };

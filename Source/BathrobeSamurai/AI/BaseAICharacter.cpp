@@ -13,3 +13,15 @@ ABaseAICharacter::ABaseAICharacter()
 	AIControllerClass = ABaseAIController::StaticClass();
 }
 
+void ABaseAICharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
+void ABaseAICharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+}
+

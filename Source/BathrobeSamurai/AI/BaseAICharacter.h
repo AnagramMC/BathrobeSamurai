@@ -18,4 +18,9 @@ public:
 public:
 	// Sets default values for this character's properties
 	ABaseAICharacter();
+
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
+
+	virtual void EnemyInteract(AActor* Interactor) PURE_VIRTUAL(ABaseAICharacter::Interact, );
 };

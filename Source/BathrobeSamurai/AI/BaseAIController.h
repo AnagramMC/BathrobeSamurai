@@ -13,8 +13,7 @@ class BATHROBESAMURAI_API ABaseAIController : public AAIController
 	GENERATED_BODY()
 	
 public:
-	ABaseAIController();
-	virtual void Possess(APawn* Pawn) override;
+	UBlackboardComponent* GetBlackboardComponent() { return BlackboardComponent; }
 
 protected:
 	UPROPERTY(VisibleAnywhere)
