@@ -35,10 +35,16 @@ void AProjectile::OnActorOverlap(AActor* OtherActor)
 {
 	if (OtherActor != GetOwner())
 	{
-		//this->Destroy();
-		UGameplayStatics::ApplyDamage(OtherActor, 10.f, this->GetInstigatorController(), this, UDamageType::StaticClass());
+		for (TActorIterator<AArin> Player(GetWorld()); Player; ++Player)
+		{
+			AArin* PlayerCharacter = *Player;
 
-		AArin* Player = Cast<AArin>(OtherActor);
+			if (OtherActor == PlayerCharacter)
+			{
+				//this->Destroy();
+				UGameplayStatics::ApplyDamage(OtherActor, 10.f, this->GetInstigatorController(), this, UDamageType::StaticClass());
+			}
+		}
 	}
 }
 
