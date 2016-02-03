@@ -31,8 +31,6 @@ protected:
 public:
 
 	void FireProjectile();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotation)
-		FRotator ProjectilePitch;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotation)
 		FVector ProjectileOffset;
@@ -40,4 +38,7 @@ public:
 private:
 
 	uint8 Health = 10;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotation)
+	FRotator ProjectilePitch;
 };

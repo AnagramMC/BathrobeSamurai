@@ -12,6 +12,16 @@ void AProjectileAICharacter::FireProjectile()
 {
 	if (ProjectileClass != NULL)
 	{
+		for (TActorIterator<AArin> Player(GetWorld()); Player; ++Player)
+		{
+			AArin* Arin = Cast<AArin>(*Player);
+
+			float Distance = FVector::Dist(this->GetActorLocation(), Arin->GetActorLocation());
+
+			ProjectilePitch.Pitch = -0.5 * (FMath::RadiansToDegrees(FMath::Asin((GetWorld()->GetDefaultGravityZ() * Distance) / (1200.f * 1200.f))));
+
+			GEngine->AddOnScreenDebugMessage(1, 1.f, FColor::Red, FString::SanitizeFloat(ProjectilePitch.Pitch));
+		}
 		const FRotator SpawnRotation = GetControlRotation() + ProjectilePitch;
 		// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
 		const FVector SpawnLocation = GetActorLocation() + ProjectileOffset;
