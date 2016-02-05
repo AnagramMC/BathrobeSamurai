@@ -35,6 +35,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotation)
 		FVector ProjectileOffset;
 
+	virtual void Tick(float DeltaTime) override;
+
 private:
 
 	uint8 Health = 10;

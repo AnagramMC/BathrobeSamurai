@@ -1,11 +1,31 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BathrobeSamurai.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "ProjectileAICharacter.h"
 
 void AProjectileAICharacter::EnemyInteract(AActor* Interactor)
 {
 	//
+}
+
+void AProjectileAICharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	AActor* Player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+
+	if (Player)
+	{
+		FRotator NewRot = UKismetMathLibrary::FindLookAtRotation(this->GetActorLocation(), Player->GetActorLocation());
+
+		NewRot.Roll = 0.f;
+		NewRot.Pitch = 0.f;
+
+		//NewRot.Yaw += -90;
+
+		this->SetActorRotation(NewRot);
+	}
 }
 
 void AProjectileAICharacter::FireProjectile()
@@ -44,17 +64,14 @@ float AProjectileAICharacter::TakeDamage(float Damage, struct FDamageEvent const
 
 	if (Health <= 0)
 	{
-		/*if (DamageCauser)
+		if (DamageCauser)
 		{
 			AArin* Player = Cast<AArin>(DamageCauser);
 			if (Player)
 			{
-				Player->killCount++;
 				DestroySelf();
 			}
-		}*/
-
-		DestroySelf();
+		}
 	}
 
 	return ActualDamage;
