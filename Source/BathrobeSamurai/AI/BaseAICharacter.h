@@ -23,4 +23,20 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	virtual void EnemyInteract(AActor* Interactor) PURE_VIRTUAL(ABaseAICharacter::Interact, );
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float health = 10.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float KnockbackAmount = 1.f;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsHit = false;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsDead = false;
+
+protected:
+	UFUNCTION()
+		virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 };

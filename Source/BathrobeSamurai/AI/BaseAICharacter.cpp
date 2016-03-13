@@ -25,3 +25,8 @@ void ABaseAICharacter::Tick(float DeltaSeconds)
 
 }
 
+float ABaseAICharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	return 0.f;
+}
+
