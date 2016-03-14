@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BathrobeSamurai.h"
+#include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
 #include "AI/ProjectileAI/ProjectileAICharacter.h"
 #include "FireProjectileTask.h"
 
@@ -12,14 +13,21 @@ EBTNodeResult::Type UFireProjectileTask::ExecuteTask(UBehaviorTreeComponent& Own
 
 	}
 
-	AController* AIController = Cast<AController>(OwnerComp.GetOwner());
-	AProjectileAICharacter* RangedEnemy = Cast<AProjectileAICharacter>(AIController->GetPawn());
+	UBlackboardComponent* Blackboard = OwnerComp.GetBlackboardComponent();
 
-	if (RangedEnemy)
+	bool isRooted = Blackboard->GetValue<UBlackboardKeyType_Bool>("IsRooted");
+
+	if (isRooted)
 	{
-		RangedEnemy->FireProjectile();
-		GEngine->AddOnScreenDebugMessage(3, 1, FColor::Black, TEXT("FUCK"));
-		return EBTNodeResult::Succeeded;
+		AController* AIController = Cast<AController>(OwnerComp.GetOwner());
+		AProjectileAICharacter* RangedEnemy = Cast<AProjectileAICharacter>(AIController->GetPawn());
+
+		if (RangedEnemy)
+		{
+			RangedEnemy->FireProjectile();
+			GEngine->AddOnScreenDebugMessage(3, 1, FColor::Black, TEXT("FUCK"));
+			return EBTNodeResult::Succeeded;
+		}
 	}
 
 	return EBTNodeResult::Failed;
