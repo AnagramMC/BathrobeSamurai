@@ -12,8 +12,8 @@ UCLASS()
 class BATHROBESAMURAI_API ATeraAIController : public ABaseAIController
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
+	ATeraAIController();
+
+	virtual void Possess(APawn* Pawn) override;
 };
